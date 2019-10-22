@@ -20,7 +20,29 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
-
+    
+    # Adding these paths from the director_movie_list.feature
+    
+    # Path for edit page (Scenario: add director to existing movie)
+    when /^the edit page for "(.*)"$/i
+      movie_id = Movie.find_by(title: $1).id
+      edit_movie_path(movie_id)
+    
+    # Path for details page (Scenario: find movie with same director)
+    when /^the details page for "(.+)"$/i
+      movie = Movie.find_by(title: $1)
+      movie_path(movie)
+    
+    # Similar Movies (filtered) page (Scenario: find movie with same director)
+    # Need to add 'similar_movies_path'
+    when /^the Similar Movies page for "(.+)"/i
+      movie = Movie.find_by(title: $1)
+      movie_similar_path(movie)
+    
+    # Home page (Scenario: can't find similar movies if we don't know director (sad path))
+    when /^the home\s?page$/i
+      movies_path
+    
     else
       begin
         page_name =~ /^the (.*) page$/
