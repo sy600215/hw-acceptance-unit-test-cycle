@@ -19,3 +19,15 @@ describe 'Tests3' do
   end
 end
 
+describe 'Tests4' do
+  it 'Test movie find by director.' do
+    expect(Movie.where(director: "Jackie Li")).not_to be_a_kind_of Integer
+  end
+end
+
+describe 'Tests5' do
+  it 'Test movie find by director.' do
+    expect(Movie.where(director: "Jackie Li")).not_to equal("Death")
+  end
+end
+
